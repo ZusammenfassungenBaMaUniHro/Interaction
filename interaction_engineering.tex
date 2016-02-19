@@ -143,3 +143,144 @@
 	\item Bottlenecks - Information: enorm wichtig welche Daten auf dem kleinen Bildschirm am Ende angezeigt werden (viele, viele Daten gespeichert; welche Davon sind wichtig und werden angezeigt?)
 	\item Bottlenecks - Aufnahmefähigkeit Mensch
 \end{itemize}
+
+
+\subsection{Basics of Graphics and Interaction Programming}
+\begin{enumerate}
+	\item Illustrate the interplay of the action cycle and the model-view-controller pattern!
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.5]{img/ac_with_mvc.png}
+		\caption{Zusammenspiel Action Cycle und MVC}
+	\end{figure}
+	
+	\item Discuss different forms of presentation!\\
+	Wahrnehmungen durch die 5 Sinne, geordnet nach Relevanz für HCI:\\
+	Visuell, Audio, Fühlbar, Geruch, Geschmack\\
+	wichtige Aspekte: Bandbreite, Aufmerksamkeit, Vergänglichkeit/Flüchtigkeit
+	
+	\item Discuss different forms of expression!\\
+	Sprache, Point \& Gestures, Physical movement (sich selbst, Objekte wie Maus, Tastatur..)\\
+	wichtige Aspekte: Genauigkeit, Geschwindigkeit, Aufwand
+	
+	\item Discuss pros and cons of uni-modal and multi-modal interaction!\\
+	\textbf{Uni-Modal:} genau eine Form der Presentation und Expression (zb Visuell und Point \& Gestures) $\Rightarrow$ ein Kanal\\
+	\textbf{Multi-Modal:} mehrere Formen/Kanäle; zb Visuell, Audio und Touch, Sprache, Point..
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|l|p{15em}|p{15em}|}
+			\hline
+			&	\textbf{Vorteile} & \textbf{Nachteile}\\
+			\hline
+			Uni-Modal & einfache Implementierung & nur ein Kanal\\
+			\hline
+			Multi-Modal & umfangreiche Formen der Interaktion & komplexe Implementierung und schwieriger zu lernen (für den User)\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	\item What are the mental, implementation and represented model? Why are they important?
+	\begin{itemize}
+		\item \textbf{Mental:} gedankliche Vorstellung des Modells; entspricht menschlicher Natur; beschreibt v.a. Operationen zum Erreichen des Ziels
+		\item \textbf{Implementation:} interne Darstellung; technisch limitiert und vom Entwickler vorgegeben; enthält Daten, Parameter, Algorithmen,...
+		\item \textbf{Represented:} Darstellung des (Implementation) Models auf dem PC; vom Entwickler vorgegeben;
+	\end{itemize}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.5]{img/models.png}
+		\caption{Zusammenspiel der 3 Modelle}
+	\end{figure}
+	\textit{Important}, weil Mental Model nicht 1:1 in Computer dargestellt werden kann; müssen abstrahieren
+	
+	\item What is a graphics context and what can it be used for?\\
+	Wird gestellt vom Window System und ist verknüpft mit dem Zeichenareal.\\
+	Stellt Funktionalitäten zum Zeichnen bereit.
+	
+	\item Explain the basic procedure for drawing paths!\\
+	begin path; move to; add (line, curve, arc,..); end path
+	
+	\item Name three interaction devices and characterize the input they deliver\\
+	Pointing Device (Maus): absolute oder relative Koordinaten\\
+	Triggers (Tasten)\\
+	Value Input (Sensoren)
+
+	\item Give examples of atomic and composite inputs!\\
+	atomic: single click, Bewegung des Zeigers, aktiviere Trigger,..\\
+	composite: double click, drag n drop, Gesten,...
+	
+	\item Illustrate the interconnections between model, view and controller in MVC pattern!
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.5]{img/mvc_interconnection.png}
+		\caption{Interconnection der drei Bestandteile des MVC Pattern}
+	\end{figure}
+	
+	\item Discuss advantages and disadvantes of the MVC!
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|p{20em}|p{20em}|}
+			\hline
+			\textbf{Vorteile} & \textbf{Nachteile}\\
+			\hline
+			klare konzeptuelle Trennung der Bestandteile & \tabitem enge Kopplung der Komponenten (durch Interaktion)\\
+			\tabitem Entwurf für generelle Architektur & \tabitem komplex zu implementieren\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	\item What loop is the fundamental ingredient of interactive systems!\\
+	\textbf{event loop:} Endlosschleife von Reaktionen auf Events; verschiedene Eventtypen; verschiedene Reaktionen
+	
+	\item Name at least five types of events in interaction systems!
+	\begin{itemize}
+		\item Application level: loaded, finished,..
+		\item Widget level: Repaint, Resize, Activated, focused,...
+		\item Input level: key pressed/released/typed,.. Touch start/moved/end, Mouse pressed/...
+		\item Window System signals external event: repaint of window required; resize of window; Input von Peripherie (zb Maus)
+		\item Application signals internal events: state change, timer elapsed
+	\end{itemize}
+	
+	\item How are events propagated in interactive systems?\\
+	Werden in EventQueue reingesteckte und nach FIFO verarbeitet;\\
+	Dispatch Events: Traversiere Window Tree und wähle vorderstes Fensters aus\\
+	Receive Events: definiere Verhalten bei Event; ausgeführt durch Listener
+	
+	\item How can callback functions be used to react to events?\\
+	Callback als Parameter einer Funktion -> Funktion ausgeführt, dann führe Callback aus. Auf Events: Ich sage Programm mach etwas und du sollst mir Bescheid geben(=callback), Ausführung erzeugt Event und callback wird gerufen(omfg.. xD)\\
+	gut für basic (device) events; but limited flexibility
+	
+	\item What are delegates and listeners?
+	Interface um auf Events zu reagieren; Logik muss vom Entwickler umgesetzt werden\\
+	cover many different events, also user-generated ones; but sometimes clomplex
+	
+	\item What are signals and slots and which toolkits make use of them?
+	QT, GTK+,.. Kommunikation zwischen Objekten; Signal wird emitted wenn Event auftritt; Slot = Funktion die bei bestimmtem Event aufgerufen wird\\
+	ähnlich zu Callbacks, aber mit höherer Flexibilität
+	
+	\item Express in pseudo code the main event loop and explain its components!\\
+	Block and render -> wartet auf Event und rendert nur bei Bedarf neu
+	\begin{lstlisting}
+	while (true || event != QUIT) {
+		event = wait_for_event();
+		do_repaint = update_model(event)
+		if (do_repaint) {
+			render_model()
+		}
+	}
+	\end{lstlisting}
+	check and render full-throttle -> render mit jedem Durchlauf und reagiert nur auf Events
+	\begin{lstlisting}
+	while (true || event != QUIT) {
+		if (check_for_event()) {
+			event = get_event()
+			update_model(event)
+		}
+		render_model()
+	}
+	\end{lstlisting}
+		
+	\item What is a disadvantage of method overriding for reacting to events?
+	sollte in Sub-Class ausgelagert werden um Custom Verhalten umzusetzen; im Gegensatz zum Listener Konzept wesentlich unübersichtlicherer Code
+	
+\end{enumerate}
