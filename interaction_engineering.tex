@@ -445,3 +445,126 @@
 	\item Give examples how to support "Where have I been?"\\
 	History Management wie redo/undo; speichere Zustand des Systems -> Problem: Wann speichern wir diesen? Bei Event? Zeitbasiert? -> Probleme: State change kann sehr schnell passieren (dragging a slider bspw) 
 \end{enumerate}
+
+
+\subsection{Advanced Interaction Concepts}
+\begin{itemize}
+	\item Give examples of gestures?
+	\begin{itemize}
+		\item \textbf{Basic}: Bedeutung des Inputs -> Stroke, Touch, Hand, Body, Facial Gestures\\
+		Typen: offline -> Geste performed -> erkannt -> interacton getriggert -> Ende\\
+		online: während Geste performed wird -> kontinuierliche Erkennung -> kontinuierliche Interaktion -> Ende
+		\item \textbf{Recognition of Gestures:} 
+		\item Basisprozedur für offline Gesten: 
+		\item Input -> Setze Menge von Referenzgesten und Menge von Interaction Events
+		\item Processing: Bestimme Referenzgeste passend zum User Input
+		\item Output: Geste, die User Input matcht
+		\item \textit{Recognition of Stroke gestures:}
+		\begin{itemize}
+			\item Stroke aufnehmen -> Free: ohne Bedingungen; Isochronal: Punkte des Strokes werden in konstanten Intervallen aufgenommen; Equidistant: Punkte des Strokes werden in konstanten Abständen aufgenommen
+			\item Distance Based Approach: Menge von Referenzstrokes -> Mappen der Kontrollpunkte -> Zentriere Bounding Boxes des Strokes und Ref-Strokes -> Berechne durchschnittliche Abweichung der Kontrollpunkte
+		\end{itemize}
+		\item \textit{Feature Based}
+		\begin{itemize}
+			\item Extract feature Vector aus dem Stroke
+			\item Berechne Gemeinsamkeit mit Ref-Stroke
+		\end{itemize}
+		\item \textit{RegEx based}
+		\begin{itemize}
+			\item Elemente des Strokes werden auf Chars gemappt
+			\item Abgleich des Strings mit RegEx(=Ref-Stroke)
+		\end{itemize}
+	\end{itemize}
+	
+	\item Are stroke and touch gestures typically online or offline gestures?\\
+	stroke offline -> User gibt Input -> Referenz erkennen -> Output\\
+	Touch sind online
+	
+	\item Illustrate the procedure of regular-expression-based gesture recognition!\\
+	Def. Ref-Stroke als RegEx -> zeichne Stroke als String auf -> RegEx matching
+	
+	\item Which recognition approach you are aware of has the best recognition rate? Why is this so?
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.5]{img/gesture_recognition.png}
+	\end{figure}\\
+	Feature Based am genauesten, weil... ich glaub, dort die Referenzstrokes mit lernen, also während der Benutzung an den Nutzer angepasst werden
+	
+	\item Which touch events exist in typical toolkits? What information do the contain?\\
+	Touch Start, Move, End, Cancel\\
+	Enthalten Liste mit allen Touch Punkten seit die Geste gestartet wurde
+	
+	\item How can a multi-touch pinch gesture be detected on Android devices?\\
+	ScaleGestureDetector mit Custom Listenr -> füge Detector an der View hinzu -> TouchEvent: verschicke Event an Detector -> Detector ruft listener, einmalig, wenn Geste identifiziert
+	
+	\item Discuss pros and cons of animated visual feedback!\\
+	Änderung startet instantan -> fließender Übergang vom alten zum neuen Zustand durch Animation\\
+	Pros: hilft die mentale Map aktuell zu halten\\
+	Cons: benötigt Zeit, change blindness -> visuelle Veränderung vom Betrachter nicht wahrgenommen
+	
+	\item Sketch the main loop for animated feedback!
+	\begin{enumerate}
+		\item Process events
+		\item Update Model
+		\item render model
+		\item Emit repaint Event, wenn mehr Updates notwendig sind
+	\end{enumerate}
+	
+	\item Are there any studies regarding advantages and disadvantages of animation? ja
+	
+	\item What is the difference between timed animations and converging animations?
+	Animation für eine konstante Zeitperiode; verschiedene Interpolationen (linear, slow-in, slow-out,..); einfacher Weg\\
+	Converging: animiere bis Konvergenz erreicht ist; verschiedene Wege der Zustandübergangs (spring-mass, smooth and effizient zooming)
+	
+	\item What are easing functions good for?\\
+	vermeiden das unnatürliche Verhalten einer linearen Animation (instantaner Start und Stopp)
+	
+	\item Explain animation via spring-mass systems (Masse Feder System)!\\
+	Konvergierende Animation -> Zustand = Punktmassemit Pos. p, Beschleunigung a, und Geschwindigkeit v\\
+	Übergang: Unterschied zw. Zuständen erzeugt Kraft; Kraft abhängig von der a der Punkte Masse in Richtung des neuen Zustandes -> a führt zu Bewegung\\
+	Beende Animation, wenn Energie klein genug (und nicht am Ende des Weges); beachte: Feder schwingt ja quasi hin und her
+	
+	\item How can view navigation in ZUIs be enhanced with animation?\\
+	smooth and efficient viewport animation (konvergierendes Verfahren)\\
+	Idee: zoome heraus -> navigiere zum Punkt um zoome währenddessen wieder herein; mit Hilfe von Space Scale Diagram\\
+	effizient = kürzester Pfad; smooth = keine wahrnehmbaren Unterbrechungen
+	
+	\item Contrast interactive lenses against regular interaction, discuss pros and cons?\\
+	Lenses: leichtgewichtig; fokussieren temporäre Effekte\\
+	regulär: schwergewichtig; haben globalen permanenten Effekt\\
+	
+	\item Give a definition of interactive lenses!\\
+	Lens = Selection + alternative Representation + zusätzliches visuelles Feedback
+	
+	\item Sketch the conceptual model of lenses and the involved components!\\
+	Input data: Selektion von Pixeln, Geometrien oder zugrundeliegenden Daten \\
+	Data processing: Lens Funktion -> verarbeite Input für Linseneffekt; je nach Selektion nur Teilmenge der Verarbeitungsschritte notwendig; kleine Selektion => advanced Operations mgl\\\\
+	-> 3 Linseneffekte: Veränderung; Ausblendung und Anreicherung
+	Result output: Join -> führe Linseneffekt mit Hintergrund zusammen, auf dem Level von Pixeln, Geometrien oder underlying data
+	
+	\item How can lenses be interacted with?
+	\begin{itemize}
+		\item Positionierung mittels Maus und Parameterveränderung durch GUI (klassisch)
+		\item Touch: bsp: zoom der Linse wie aufm Handy halt.. :D
+		\item fühlbare/greifbare Interaktion: Bsp: Kunststoffring auf Tabletop als Linse -> von Software erkannt und platziert an Rings Position die Linse
+		\item gaze-based: Interaktion mittels der Augenbewegungen
+	\end{itemize}
+	
+	\item What is interaction syntax and why is it important?\\
+	Menge von legalen Eingabesequenzen verbunden mit den Aktionen, die als Ergebnis auf die Eingabe aktiviert werden\\
+	Wichtig für komplexe Interaktion -> erfordert viel Planung wie die Interaktion dem Nutzer gezeigt werden kann
+	
+	\item How can interaction syntax be specified? Discuss benefits and problems!\\
+	\begin{itemize}
+		\item Implizit durch Listener Logik -> führt zu Spaghetti Code
+		\item Event Diagramme -> Pointer Positionen als Trajektorie + annotierte Events und Zustandsdarstellung entlang der Trajektorie -> sinnvoll für einfache Aufgaben, aber limitiert
+		\item Interaction State Machines: sollte klar sein.. mit Hilfe von State Charts halt.. siehe SWT VL
+	\end{itemize}
+	
+	\item Sketch a basic interaction using a state machine with guards!\\
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.5]{img/state_interaction.png}
+	\end{figure}
+	
+\end{itemize}
