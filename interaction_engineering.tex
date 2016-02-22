@@ -282,5 +282,166 @@
 		
 	\item What is a disadvantage of method overriding for reacting to events?
 	sollte in Sub-Class ausgelagert werden um Custom Verhalten umzusetzen; im Gegensatz zum Listener Konzept wesentlich unübersichtlicherer Code
+\end{enumerate}
+
+
+\subsection{Fundamental Interaction Concepts}
+\begin{enumerate}
+	\item At which three levels can interaction be considered?
+	\begin{itemize}
+		\item Low level: basic picking and manipulation\\
+		Event Notifications: \textit{Etwas} ist passiert;\\
+		Event Type: \textit{Was} ist passiert;\\
+		Interaction abhängig vom räumlichen Kontext: also \textit{wo} etwas passiert ist;\\
+		Interaction Handling = Event Notification + Event Type + räumlicher Kontext
+		\item Intermediate level: Kombiniere low level Techniken zu navigieren, exploration, modellieren
+		\item High level: kombiniere intermediate level Techniken zu komplexen Prozessen (Understanding, Kreativität)
+	\end{itemize}
 	
+	\item Why is picking necessary for human-computer interaction?\\
+	Picking - Grundelement für Interaktion, Mensch ist es in realer Umgebung gewohnt Dinge anzufassen bevor er mit ihnen interagiert\\
+	Für Picking extra Ebene -> MDPC - model, display view, picking view, controller\\
+	Picking view beschreibt Interaction Geometry (ermöglicht räumlichen Kontext) -> Regionen mit denen interagiert werden kann\\
+	Vorteil der View Trennung: einfacheres Modellieren, Testen; GUI kann ausgetauscht werden ohne Interaktion zu verlieren; verbessertes Verhalten (Bsp: Dropdown Mouse Movement)
+	
+	\item Characterize the picking problem! What is given, what is sought(gesucht)?
+	Given: Interaction Geometrie $G = \{g_1,\ldots, g_n\}$ und eine Position auf dem Bildschirm $P = (x,y)$\\
+	Gesucht: Interaction Geometrie $G' \subset G$ am Punkt $P$, wobei\\
+	$|G| = 0$, wenn nichts matcht\\
+	$|G| = 1$, für einen eindeutigen Match\\
+	$|G| > 1$, für mehrere Matches\\
+	\textit{Technical Requirements:} Speed -> Picking muss innerhalb ms identifiziert werden; Picking requests können sehr schnell eintreffen\\
+	Genauigkeit: muss exakt sein, front-most object\\	
+	\textit{Human R:} Fitt's law: betrachte beim Design die Zeit, die Nutezr für Interaktion vor. benötigen wird
+	
+	\item Explain the role of "essential geometry" and "MDPC"!
+	MPDC - siehe 2 Fragen vorher\\
+	Essential Geometry - Grundlegende Geometrie (Punkte, Linien, Shapes, Objects, Rays):\\
+	Controller muss drag region auf model mappen. Regions setzen sich zusammen aus den essential Geometrie Bestandteilen -> Essential Geometry dient quasi als Connection zw. View und Controller beim Picking\\
+	Vier muss Regions kennen (zwecks rendern)
+	
+	\item Sketch the basic implementation strategies for picking!\\
+	\textbf{Screen Space Picking}
+	\begin{itemize}
+		\item Render Szene in Picking Buffer, Geometrie hat dort eine ID
+		\item Benutze Pointer Koordinaten als direkter Index für den Picking Buffer
+		\item Javascript: Draw Path -> apply HitRegion -> Event: Abfrage welche HitRegion getroffen wurde
+		\item OpenGL: zusätzliches RenderTarget -> Elementen IDs zuweisen -> Geometrie mit Hilfe der IDs (in Form von Farben) rendern -> look up ID from picking buffer
+	\end{itemize}
+	\textbf{Object Space Picking}
+	\begin{itemize}
+		\item Projiziere Pointer in die Szene mit Hilfe inverser Transformationen
+		\item Berechne Containment/Intersection mit der Szenen Geometrie
+		\item Nearest Neighbor Search:
+		\item Finde Geometrie am nächsten zu $P$
+		\item Optional: beschränke Picking auf Epsilonumgebung
+		\item machbar für Punkte(0D) und Linien(1D)
+		\item Punkte: Berechne Distanz von P zu allen Punkten; nimm Punkt mit geringster Distanz
+		\item Linien: Lot von P auf Linien fällen -> nimm Linie mit kürzestem Lot\\
+		\\
+		\item Containment Search:
+		\item Finde Geometrie, die P enthält
+		\item machbar für Shapes (2D) und Objekte (3D)
+		\item Shapes: Check if P is contained in geometry
+		\item Objects: Wandle P in Ray/Strahl um und prüfe ob Strahl die Dreiecke des Objekts schneidet
+	\end{itemize}
+	
+	\item Discuss different ideas to accelerate the picking!
+	\textbf{Computation Performance}
+	\begin{itemize}
+		\item Reduziere Komplexität der Geometrieberechnung
+		\item Sub-linear Search -> benutze hierarchische Strukturen (Bäume,..) um Suchen zu beschleunigen
+		\item Pointer Kohärenz: gucke zunächst in Nachbarschaft
+	\end{itemize}
+	\textbf{User Performance}
+	\begin{itemize}
+		\item unterschiedliche Picking Mechanismen mit teils mehr Features
+		\item Sticky Cursor
+		\item Bubble Cursor
+		\item Bubble Lens
+	\end{itemize}
+	
+	\item Selektionsarten:
+	\begin{itemize}
+		\item Click Selection: Nutzer klickt Elemente einzeln an -> Serie von einzelnen Pickingaktionen; typisch: Simple Click, Strg+ Click, Shift + Click
+		
+		\item Rectangle Selection: Nutezr zeichnet Rechteck. Selektion entweder\\
+		\textit{inside}: shape was auch immer muss zu 100\% im Rechteck enthalten sein\\
+		gut für kleine, reguläre Elemente -> Bsp Desktop Icons\\
+		Nachteil: bei unregelmäßigen oder großen Strukturen muss ich gut abschätzen können, ob mein Rechteck alle Elemente einkapselt
+		\textit{overlap}: Elemente müssen Rechteck nur schneiden\\
+		Vorteil: gut für unregelmäßige und große Elemente (zb Landkarte)\\
+		Nachteil: Frage: wie viel muss geschnitten werden?!
+		
+		
+		\item Lasso Selection: Selektion innerhalb free-form shape -> Nutzer zeichnet mit Maus quasi eine freie Form und innerhalb dieser wird selektiert
+	\end{itemize}
+	
+	\item Discuss pros and cons of "inside" and "overlap" selection!
+	siehe Frage vorher
+	
+	\item Grundlegend: Manipulation\\
+	Object der Szene -> Interaktion benutzt um Geometrie und Eigenschaften des Objektes zu ändern\\
+	View auf die Szene -> Kameramanipulation -> verändert die Perspektive auf die Szene\\
+	\\
+	Constrained Manipulation: Manipulation nur in bestimmten Bedingungen mgl, Bspw. Scrollbar nur in bestimmte Richtungen manipulierbar
+	
+	\item What is the difference between absolute and relative manipulation?
+	Mappen des räumlichen Kontexts auf die Manipulation, entweder \\
+	absolute: Punkt im Raum wählen -> dann Ergebnis -> abhängig von der aktuellen Pointer Position\\
+	relativ: Pfad durch den Raum wählen -> dann Ergebnis -> Ergebnis abhängig von Serie von Pointer Positionen
+	
+	\item Wofür Navigation? -> große Mengen an Daten können nicht alle auf dem Bildschirm dargestellt werden -> Nutzer muss durch diese navigieren können\\
+	Wie? Besuche verschiedene Teile der Informationen auf verschiedenen Detaillevel\\
+	Requirements: Wo bin ich? Wohin kann ich gehen? Wie komm ich dahin? Was liegt dahinter? Wo ist es sinnvoll hinzugehen? Wo war ich?
+	
+	\item What is the mental model for actor-centric vs. object-centric manipulation? Discuss consequences for interaction!\\
+	Actor: Ich hab das Auge in der Hand und navigiere mich selbst durch die fixe Szene\\
+	Object: Ich habe die Welt in der Hand und navigiere indem ich die Szene selbst bewege.\\
+	Konsequenzen: Einfluss wie Interaktion mit Hardware umgesetzt wird; Bsp Zoom mittels Mausrad -> roll ich es weg (Object Centered) oder zu mir (Actor Centered)?
+	
+	\item In which respect is scrolling limited, what is the advantage of scrolling?\\
+	lineare Navigation; festgelegte Richtungen; relative Positionierung der View mittels Drag n Drop;\\
+	Absolute Positionierung der View mittels Scroll handle;\\
+	Feedback der View Position innerhalb der Welt\\
+	Pro: Easy to use; Con: Limitierung bei komplexen Problemen durch Linearität
+	
+	\item Illustrate a space-scale diagram!
+	\begin{itemize}
+		\item Grundlgende Idee: durch Skalierung die Einschränkungen des Scrollings umgehen
+		\item dazu: unterstützt Scaling unterschiedliche Geschwindigkeiten der Navigation -> langsam und präzise, wenn kleine Skalierung; schnell und grob, bei großer Skalierung
+		\item -> Zoomable UIs = Scaling + Scrolling
+		\item Space-Scale diagram dient zum Verstehen der ZUIs
+		\item Zeigt unterschiedlichen Zoomstufen abhängig von Skalierung (Achtung: kann auch unendlich sein)
+	\end{itemize}
+	
+	\item Which questions must a user be able to answer during view navigation?
+	\begin{itemize}
+		\item Where can I go?
+		\item How do I get there?
+		\item Where am I?
+		\item What lies beyond?
+		\item Where can I usefully go?
+		\item Where have I been?
+	\end{itemize}
+	
+	\item Give examples how to support "Where can I go?"\\
+	View Space Navigation: Verändere Viewport Position und Größe -> Bsp: smoothes und effizientes Zoomen und Schwenken\\
+	Data Space Navigation: exploite Struktur im Datenraum -> Bsp: Kantenbasiertes Reisen
+	
+	\item Give examples how to support "How do I get there?"\\
+	Schwenken: Drag n Drop (relativ); Pan Wheel (relativ); Scrollbar (absolut)\\
+	Zoom: Mouse Wheel rotation (relativ); Zoom Slider (absolute); Elastic Rectangle (Absolute; zoom in only)
+	
+	\item Give examples how to support "Where am I?"\\
+	Übersichtsfenster (Position); Scrollbar Indikatoren (Position); Zoom Slider (Skalierung); Infinite Grid (Skalierung)
+	
+	\item Give examples how to support "What lies beyond?"\\
+	Indikatoren, die anzeigen das Elemente außerhalb des Viewport liegens; Bsp: Pfeil, Proxy (Stellvertreter am Rand des Viewport); Halo (Halbkreis mit Objekt als Mittelpunkt); Wedge	
+	
+	\item Give examples how to support "Where can I usefully go?"\\
+	Führung: Fokus = aktuelle View; Context = Nachbarn des Fokus -> bestimmte und bewerte Kandidaten -> Stelle Empfehlungen dar
+	
+	\item Give examples how to support "Where have I been?"\\
+	History Management wie redo/undo; speichere Zustand des Systems -> Problem: Wann speichern wir diesen? Bei Event? Zeitbasiert? -> Probleme: State change kann sehr schnell passieren (dragging a slider bspw) 
 \end{enumerate}
