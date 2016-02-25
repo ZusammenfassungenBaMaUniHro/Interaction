@@ -421,3 +421,307 @@ unterschiedlichen Aspekten hilfreich sein können.
 		\item Fluchtlinien minimieren -> Ausrichtung aller Elemente an wenigen Fluchtlinien
 	\end{itemize}
 \end{enumerate}
+
+\subsection{Normen und Bildschirmarbeit}
+\begin{enumerate}
+	\item Was beinhaltet ISO 9241-Teil 110 Grundsätze ergonomischer Dialoggestaltung?
+	\begin{itemize}
+		\item Dialogrichtlinien
+		\item unabhängig von bestimmten Dialogtechniken
+		\item liefert ergonomische Gestaltung von interaktiven Systemen und
+		\item \textit{Grundsätze der Dialoggestaltung:}
+		\item Aufgabenangemessenheit: System unterstützt User beim Erledigen seiner Aufgabe, d.h. Funktionalität ist an Aufgabenbereich angepasst
+		\item Selbstbeschreibungsfähigkeit: muss für Nutzer offensichtlich sein zu jeder Zeit zu erkennen wo er sich im Dialog befindet, welche Handlungen unternommen werden können
+		\item Steuerbarkeit: Dialogablauf: starten, Richtung und Geschwindigkeit beeinflussbar durch User
+		\item Erwartungskonformität: entspricht allgemein anerkannten Konventionen und aus Nutzerkontext vorhersehbare Benutzerbelange
+		\item Fehlertoleranz: Arbeitsergebnis kann trotz erkennbar fehlerhafter Eingaben mit minimalen Aufwand seitens des Benutzers erreicht werden
+		\item Individualisierbarkeit: HCI und Darstellung von Informationen kann durch Nutzer angepasst werden
+		\item Lernförderlichkeit: unterstützt Nutzer beim Erlernen des Systems\\
+		\\
+		\item Anwendung der Grundsätze  unter Berücksichtigung der Benutzermerkmale: \\
+		Aufmerksamkeitsspanne; Grenzen des Kurzzeitgedächtnisses\\
+		Lerngewohnheiten, Grad an Erfahrun bzgl Arbeit und Umgang mit Dialogsystems\\
+		mentales Modell des Nutzers bzgl des Dialogsystems
+		\item Grundsätze sind nicht unabhängig voneinander -> Priorisieren der Grundsätze nach Zielen der Organsitation; Benutzerbelange; zu unterstützende Aufgaben
+	\end{itemize}
+	
+	\item Wie erreiche ich ...
+	\begin{itemize}
+		\item Selbsterklärungsfähigkeit? angezeigte Informationen sollten handlungsbegleitend sein; minimierte Notwendigkeit von Handbüchern (oder anderen externen Hilfen); Informierung über Änderung des Zustands; Überblick über die nächsten Dialogschritte; 
+		\item Aufgabenangemessenheit? zeige nur Informationen an, die im Zusammenhang mit der Aufgabe stehen (Bsp: Einhaltung zeitkritischer Bearbeitung -> einzuhaltende Termine zuerst anzeigen); Form der Ein/Ausgabe sollte zu Aufgabe passen; Dialogschritte sollten zum Arbeitsablauf passen
+		\item Steuerbarkeit? Geschwindigkeit durch Nutzer und nicht durchs System vorgeben; Steuerung der anzuzeigenden Datenmenge; Unterbrechen und Wiederaufnehmen des Dialogs ermöglichen; Elemente zur Navigation durch den Dialog bereitstellen 
+		\item Erwartungskonformität? Vokabular der Aufgabe verwenden; Verhalten und Darstellung innerhalb einer Aufgabe/ähnlichen Aufgaben konsistent; Formate an kulturelle und sprachliche Konventionen anpassen -> Bsp: Symbole für Öffnen, Neu, Speichern -> gleiches Verhalten wie in bekannten Tools
+		\item Fehlertoleranz? Fehler dem Nutzer anzeigen; Verbesserungsvorschläge anbieten; über automatische Korrektur von Fehler informieren; Überprüfung der Eingabe von Fehlern VOR Verarbeitung; Verhinderung von Systemabstürzen
+		\item Individualisierbarkeit? Techniken zur Anpassung an charakteristische Eigenschaften des Nutzers; zb Farbschema auswählen; Umfang von Erläuterungen (zb Hilfeinformationen) an Nutzer bzw dessen Wissen anpassbar; Format und Typ der Ein/Ausgabe änderbar; Reset auf Werkseinstellungen mgl; 
+		\item Lernförderlichkeit? Rückmeldungen und Erläuterungen nutzen; minimale Eingabe von Informationen, aber zusätzliche Informationen auf Anforderung liefern; Regeln und zugrundeliegende Konzepte dem Nutzer zugänglich machen
+	\end{itemize}
+	
+	\item Wie lässt sich Gebrauchstauglichkeit messen?\\
+	in 4 Aspekten
+	\begin{itemize}
+		\item \textbf{Effektivität}: Genauigkeit und Vollständigkeit, mit der Benutzer ein bestimmtes Ziel erreichen 
+		\item \textbf{Effizienz}: Der im Verhältnis zur Genauigkeit und Vollständigkeit eingesetzte Aufwand zum Erreichen des Ziels
+		\item \textbf{Zufriedenstellung}: Freiheit von Beeinträchtigungen und positive Einstellungen ggüber der Nutzung des Produkts
+		\item \textbf{Nutzungskontext}: Benutzer, Arbeitsaufgaben, Arbeitsmittel, physische und soziale Umgebung
+	\end{itemize}
+	1-3 werden im Rahmen des Nutzungskontextes betrachtet
+	
+	\item Nennen sie Kriterien zur Messung der Gebrauchstauglichkeit!\\
+	siehe eine Frage vorher(?)
+	
+	\newpage
+	\item Was lässt sich messen bei der Gebrauchstauglichkeit? (allgemein)
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|p{13em}|p{13em}|p{13em}|}
+			\hline
+			\textbf{Maß der Effektivität} & \textbf{Maß der Effizienz} & \textbf{Maß der Zufriedenstellung}\\
+			\hline
+			Grad der Zielerreichung in \% & Zeit für Erledigung einer Aufgabe & Einstufungsskala der Zufriedenheit\\
+			\hline
+			\%-Satz der Nutzer die Aufgabe erfolgreich abschließen & Abgeschlossene Aufgaben je Zeiteinheit & Häufigkeit freiwilliger Nutzung\\
+			\hline
+			Durchs. Genauigkeit der abgeschlossenen Aufgaben & Monetäre Kosten der Aufgabenerledigung & Häufigkeit von Beschwerden\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	\item Ein Dialogsystem soll angemessen für geübte Benutzer sein! Welche Usability-
+	Messungen sind sinnvoll?
+		\begin{table}[!h]
+			\centering
+			\begin{tabular}{|p{13em}|p{13em}|p{13em}|}
+				\hline
+				\textbf{Maß der Effektivität} & \textbf{Maß der Effizienz} & \textbf{Maß der Zufriedenstellung}\\
+				\hline
+				Anzahl ausgeführter Aufgaben hoher Schwierigkeit & Effizienz im Verhältnis zu einem Experten-Benutzer & Einstufungsskala für Zufriedenstellung mit Produktmerkmalen für hohe Ansprüche\\
+				\hline
+				Prozentsatz relevanter Funktionen, die genutzt werden&&\\
+				\hline
+			\end{tabular}
+		\end{table}
+	\item Wie kann der Nachweis der Gebrauchstauglichkeit für Software geführt werden?
+	\begin{itemize}
+		\item 	mit dem ErgoNorm-Prüfverfahren; Verifikation sehr teuer, daher Falsifizierbarkeitsansatz (Software ist richtig bis Gegenbeweis)
+		\item zweiteiliges Prüfverfahren:
+		\begin{enumerate}
+			\item Benutzerfragebogen -> Untersuchung von Nutzerproblemen
+			\item Prüfverfahren: Anforderungsentwicklung und Normkonformitätstest sowie Erhärtungsprüfung für vermutete Normabweichungen -> Methoden: Aufgabenanalyse mittels Szenarien; Inspektion; Dokumentanalyse,..
+		\end{enumerate}
+		\item Definition von Prüfkriterien: Nutzungskontext ---erkennen der--> Erfordernisse ---ableiten der---> Anforderungen ---transformieren in---> Prüfkriterien
+		\newpage
+		\item \textbf{Erhärtungsprüfung:}
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[scale=0.5]{img/erhaertungspruefung.png}
+			\caption{Entscheidungsregeln bei Erhärtungsprüfung}
+		\end{figure}
+		\item \textbf{Nonkonformitätsprüfung:}
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[scale=0.5]{img/nonkonformitaet.png}
+			\caption{Nonkonformitätsprüfung}
+		\end{figure}
+		\begin{itemize}
+			\item ISO Teil 10 Dialogprinzipien; Teil 12 Informationsdarstellung
+		\end{itemize}
+	\end{itemize}
+
+	\item Was regelt die Bildschirmarbeitsverordnung?
+	\begin{itemize}
+		\item Vorschriften zur Vorsorge, zum Arbeitsablauf und zu Pausen für alle Beschäftigten
+		\item gilt nicht für öffentliche EDV Geräte; Rechenmaschinen, Kassen mit kleiner Datenanzeige, Bildschirme für Videoüberwachung,....
+		\item Mindestanforderungen für Arbeitsplatzgestaltung: \\
+		Arbeitsmittel: Bildschirm, Tastatur, Tisch und Stuhl\\
+		Arbeitsumgebung: Bewegungsraum, Licht, Lärm, Klima, Strahlung\\
+		Zusammenwirken Mensch-Arbeitsmittel: Software und Arbeitsaufgaben
+		\item Anforderungen an Körperhaltung: \\
+		optimaler Abstand zum Gerät: 90cm; optimale Blickrichtung\\
+		großer Greifraum
+		\item Arbeitstätigkeit am Bildschirm regelmäßig durch andere Tätigkeiten oder Pausen unterbrechen
+		\item Prüfsiegel für Geräte
+		\item Anforderungen an Bildschirme: \\
+		Ergonomie: gleichmäßige Beleuchtung; Kontrast; Flimmerfrei,..\\
+		Emissionen: magnetische Störungen dürfen kein Flackern verursachen\\
+		Ökologie: geringer Energieverbrauch; Recyclebar,...
+	\end{itemize}
+	
+	\item Wie kann die Einhaltung von Ergonomie-Normen geprüft werden?\\
+	müsste zwei Fragen vorher das ErgoNorm Verfahren sein
+\end{enumerate}
+
+\subsection{Fenstersysteme}
+Gibt keine Kontrollfragen -> Folien angucken
+
+\subsection{Dialogtechniken}
+\begin{itemize}
+	\item Was sind Interaktions- und Dialogtechniken?
+	\begin{itemize}
+		\item Interaktionstechnik = Realisierung einer Interaktionsaufgabe\\
+		Charakterisierung durch die zu lösende Aufgabe und zu welchem Interaktionsstil sie angehören\\
+		Interaktionsaufgabe = bestimmte Aktion, die wiederholt oder in ähnlicher Form auftreten
+		\item wiederkehrende Dialogmuster durch sog. Interaktionsformen beschreiben und realisieren\\
+		Interaktionsform = festgelegt Auswahl von Ein/Ausgabevorgängen zsm mit ihren Abfolgebedingungen, die zu stereotypischen Kommunikationssequenzen führen
+		\item \textit{typische Techniken}:
+		\item natürliche Sprache: Anwendung in KI, Syntaktische und Semantische Analyse; Sprachein/ausgabe
+		\item Frage-Antwort-Dialoge: System fragt; Nutzer antwortet
+		\item Kommandodialog: veränderter Frage-Antwort; Nutzer stellt System jetzt Kommandos (klassisch bash ;-))
+		\item Menügesteuerter Dialog: 
+		\item Formulardialog: quasi nachgebildetes Papierformular
+		\item Direkte Manipulation
+		\item Graphischer Dialog
+		\item Fenstertechnik - WYSIWYG
+		\item heute durch Fenstersysteme: Kopplung unterschiedlicher Stile
+	\end{itemize}
+	\item Vergleichen Sie PullDown mit Popup-Menüs!
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|l|p{15em}|p{15em}|}
+			\hline
+			&\textbf{Pulldown} & \textbf{Popup}\\
+			\hline
+			&klappt unter Titel auf nachdem Titel angeklickt wurde; verschwindet nach Auswahl oder bewegen des Cursors außerhalb der Menufläche & unsichtbares Menu; erscheint an Cursorposition\\
+			\textbf{Bsp} &klassische Menuleiste & Contextmenu\\
+			\hline			
+			\textbf{Vorteile} & Darstellung: ständiger Hinweis auf Steuerungsmglkeiten durch Menuleiste & Mauseinsatz: Minimierung der erforderlichen Mausbewegung\\
+			& Wirkungsbreite: Optionen können über mehrere Bildschirmbereiche wirken & \\
+			& Raumbedarf: relativ gering aufm Bildschirm& Raumbedarf: Nutzfläche bleibt vollständig erhalten\\
+			\hline
+			\textbf{Nachteile} & Optionenmenge: nur beschränkte Auswahl von Optionen mgl & Optionenmenge: nur geringe Anzahl von Optionen mgl \\
+			& Mauseinsatz: längere Mausbewegungen erforderlich & Wirkungsbreite: Aktionen sind objektbezogen\\
+			&&Darstellung: Steuerungsmglkeiten erst nach Öffnen sichtbar \\
+			\hline
+		\end{tabular}
+	\end{table}
+	Standardelemente des Fenstersystems
+	\item Beschreiben Sie Varianten von Menüs!
+	\begin{itemize}
+		\item Binäres Menü: genau zwei auswählbare Elemente
+		\item Erweitertes Menü: Menu in Seiten untergliedert
+		\item Einfach/Mehrfac-Menu: Nutzer kann genau/mehr als eine Wahl treffen
+		\item Permanentes Menu: ständig auf Bildschirm sichtbar
+		\item Pulldown/Popup: siehe oben
+		\item Drop-Down: Menu klappt unter Titel auf nachdem der Titel berührt wurde; verschwindet auch wieder
+		\item Tear-Off: 
+	\end{itemize}
+	\newpage
+	\item Welche Vor- und Nachteile haben spezielle Dialogtechniken (Sprache, Menü, Formular)?
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|l|p{13em}|p{13em}|p{13em}|}
+			\hline
+			&\textbf{Natürliche Sprache} & \textbf{Menü} & \textbf{Formular}\\
+			\hline
+			\hline
+			\textbf{Vorteile} & einfach anwendbar & vollständige Führung des Nutzers durchs System & explizit Werte in Maske eintragen\\
+			& mächtig genug, um jede Anfrage zu übermitteln & einfacher Auswahlmechanismus & Navigation zw Eingabefeldern\\
+			& keine Formale Sprache erlernen &schnell bei kleinen Wertemengen& Vertrautheit bei Formularen, die Papier entsprechen\\
+			\hline
+			\textbf{Nachteile} & derzeit nur Verarbeitung von Teilmenge der Sprache & langatmiger Dialog bei großer Auswahlmöglichkeit& Masken oft mit Informationen überladen\\
+			& Benutzer überschätzen Fähigkeiten des Systems &Mehrdeutigkeit der Zuordnung (wo finde ich was?)& Probleme, wenn alle Felder ausgefüllt werden müssen\\
+			& Komplexe Sachverhalte oft nur umständlich zu formulieren &Wie lange Menu sichtbar?& Layoutgestaltung (Prinzipien der Wahrnehumgslehre)\\
+			& oft Mehrdeutigkeiten && \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item Welche Aufgabe hat ein Layoutmanager!
+	\begin{itemize}
+		\item Anordnung der Kindelemente nach bestimmten Kriterien
+	\end{itemize}
+	\item Nennen sie typische Beispiele für Layoutmanger!
+	\begin{itemize}
+		\item Lineare: Kinder nacheinander in Reihenfolge der Richtung (vertical/horizontal) eingeordnet
+		\item tabellarisch: 
+		\item Anordnung in Rubriken (zb BorderLayout Java)
+		\item Anordnung mit Hilfe von Contraints
+		\item Baum- oder Graphenalgorithmen
+	\end{itemize}
+	
+	\item Nennen sie 3D Interaktionstechniken?\\
+	Trackball (= §D Hülle um Objekt)\\
+	Semitransparente Volumina als 3D Cursor\\
+	Anfassbare pyhsische Objekte (zb Linse auf Tabletop)
+	
+	\item Welche Möglichkeiten hat man zur „Erweiterung“ der Zeichenfläche?\\
+	Nutzen mehrerer, alternativer Zeichenflächen (Card-Layout, Tab-Layout)\\
+	Scrollbars (Verschieben des darstellbaren Bereichs)\\
+	ZUIs
+	
+	\item Was ist direkte Manipulation?\\
+	\begin{itemize}
+		\item Prinzipien:
+		\item permanente Sichtbarkeit der jeweils interessierenden Objekte
+		\item schnelle, umkehrbare Operationen, deren Wirkung unmittelbar sichtbar werden
+		\item physische Aktionen, wie Bewegen eines Zeigegerätes, Selektionsmechanismen
+		\item generische Kommandos und Funktionsobjekte (Mülleimer, Printer)
+		\item OO Interaktionssyntax: erst Auswahl Objekt, dann Methoden/Kommandoauswahl
+		\\\\
+		\item Vorteile:
+		\item schnell erlernbar (für Anfänger); effizient (für Experten)
+		\item kaum Fehlermeldungen notwendig
+		\item Probleme:
+		\item leistungsfähige Zeigeinstrumente notwendig
+		\item hoher Programmieraufwand
+	\end{itemize}
+	\item Wie würden sie Menüs an einer Powerwall nutzen? Ziele der Interaktion?\\
+	PopupMenu mit am sinnvollsten; DropDown mit ShortCuts auch sinnvoll mgl\\
+	\item Welche Gesten/Interaktionsgeräte sind sinnvoll einsetzbar an Powerwall?\\
+	Eyetracker; Tracker für Bewegung des Körpers (Bsp Wii)
+	
+	\item Welche Gesten halten sie für sinnvoll zum Ersatz von „arm“ und „activate“ auf eine Touchscreen?
+\end{itemize}
+
+\subsection{Metaphern}
+\begin{itemize}
+	\item Was ist eine Metapher ?
+	\begin{itemize}
+		\item sprachliches Bild
+		\item Dadurch wird auf die Ähnlichkeit der Begriffe in einem speziellen Kontext hingewiesen
+		\item Metaphern nutzen die Vertrautheit eines Begriffes, um ein Konzept	anschaulich zu machen – positive Analogien.
+		\item Metaphern können Ordnung und Struktur in Schnittstellen bringen bei orientierung an Nutzer vertraute Konzepte \\
+		Bsp: Desktop-Metapher; Buch-Metapher; Reise-Metapher (''erst Aufgabe erledigen bevor ich weiter kann''); Raum-Metapher (zb in Informationssystemen)
+	\end{itemize}
+	
+	\item Wie lassen sich Metaphern bei der Arbeit mit Dialogsystemen sinnvoll nutzen?\\
+	siehe vorher Punkt 3
+	
+	\item Ein Entwurfsmuster beschreibt ein bestimmtes, in einem
+	bestimmten Kontext immer wiederkehrendes Entwurfsproblem
+	sowie ein generisches Schema zur Lösung dieses Problems.
+	
+	\item Wozu dient das Entwurfsmuster Fassade?
+	\begin{itemize}
+		\item einheitliches Interface für Menge von Klassen in einem Subsystem 
+		\item ermöglicht dadurch leichtere Nachnutzung des Subsystems
+		\item Anwendbarkeit: einfache Schnittstelle zu komplexen Subsystemen (zb WidgetBibliothek)
+		\item Entkopplung des Systems und Aufteilung in Schichten
+	\end{itemize}
+	
+	\item Wozu dient das Entwurfsmuster Kompositum(Composite)?
+	\begin{itemize}
+		\item Zusammenfügen von Objekten in baumartigen Strukturen, um Teile-Ganzes-Hierarchie zu repräsentieren
+		\item Teilnehmer: Client - manipuliert Objekte durch Schnittstelle von Komponente\\
+		Blatt: repräsentiert Kindobjekt, definiert Verhalten für primitive Objekte\\
+		Komponenten: deklariert Schnittstelle für Objekte in Struktur und Zugriff auf Kindobjekte
+		\item Kompositum: definiert Verhalten für Komponenten, die Kindobjekte haben können
+	\end{itemize}
+
+	\item Wozu dient das Entwurfsmuster Dekorierer (auch Wrapper)?
+	\begin{itemize}
+		\item Dynamisches Hinzufügen zusätzlicher Verantwortlichkeiten
+		\item flexible Alternative zur Unterklassenbildung existierender Funktionalität bereit
+	\end{itemize}
+	
+	\item Wozu dient das Entwurfsmuster Observer?
+	\begin{itemize}
+		\item Definition einer 1:n Abhängigkeit zw Objekten um bei Änderung des einen Objektes alle n abhängigen Objekte zu informieren
+	\end{itemize}
+	
+	\item Wozu dient das Entwurfsmuster ...?\\
+	Singleton, Abstract Factory; Command; Adapter; Bridge; Proxy
+	
+	\item Vergleichen Sie das Entwurfsmuster Observer mit dem Model-View-Controller-Modell!	\begin{itemize}
+		\item Observer = Pattern | MVC = Architektur
+		\item Observer kann im MVC benutzt um effizient die Änderung mitzuteilen
+	\end{itemize}
+\end{itemize}
