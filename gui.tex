@@ -186,12 +186,16 @@ unterschiedlichen Aspekten hilfreich sein können.
 
 \subsection{Wahrnehmung}
 \begin{enumerate}
-	\item Welche Prozesse spielen beim statischen und dynamischen Sehen eine
-	Rolle?
+	\item Welche Prozesse spielen beim statischen und dynamischen Sehen eine Rolle?
 	\begin{itemize}
 		\item Statisches Sehen: Hell-Dunkel, Farbe, Scharf Sehen; nicht sehen
 		\item dynamisches Sehen: Bewegungen; Peripheres sehen, Augenbewegungen
-		\item TODO
+		\item Informationswahrnehmung
+		\item Hell-Dunkel: Verantwortlich dafür Stäbchen im Auge -> erweiterbar durch Irisöffnung (schließen bei Helligkeit und vice-versa); Anpassung dauert Sekunden bis Minuten
+		\item nichtSehen: blinder Fleck an Verbindung Sehnerv mit Netzhaut
+		\item Farbe: elektromagnetische Wellen wahrnehmen\\
+		unterschiedliche Sensibilität für verschiedene Farben
+		\item Peripher Sehen: unscharfes Sehen in der Peripherie der Netzhaut; 
 	\end{itemize}
 	
 	\item Wie erfolgt die Wahrnehmung von Objekten beim Menschen?
@@ -551,7 +555,130 @@ unterschiedlichen Aspekten hilfreich sein können.
 \end{enumerate}
 
 \subsection{Fenstersysteme}
-Gibt keine Kontrollfragen -> Folien angucken
+\begin{enumerate}
+	\item Welche Begriffe/Konzepte werden neben Fenstern bei
+	modernen Fenstersystemen noch benötigt?
+	\begin{itemize}
+		\item Window: Ausgabefläche, die zu platzieren ist
+		\item Desktop/Workspace: Fläche auf dem Fenster platziert werden
+		\item Display: Verwaltung der Ausgabefläche und Eingabegeräte
+		\item Screen: physisch vorhandener Bildschirm
+		\item Virtual Screen/Workspace/Desktop: Durch Speicherabbildung vorhandener Platz aus dem aktuelle Ausschnitte eingeblendet werden können
+	\end{itemize}
+	
+	\item Fenstersysteme – Strategien zur Platzierung von Fenstern
+	\begin{itemize}
+		\item \textbf{Compositing}: Fenster werden erst erstellt, separat gemalt und dann zusammengepackt um sie in verschiedenen 2D oder 3D Umgebungen darzustellen
+		\item \textbf{Stacking:} Fenster können überlappend dargestellt werden indem Hintergrundfenster zuerst gezeichnet werden; darf nicht als Composition Manager deklariert sein
+		\item \textbf{Tilling}: nicht überlappend; Fenster werden neben- oder unter/übereinander dargestellt
+		\item \textbf{Dynamic:} switchen dynamisch zw. stacking und tilling
+	\end{itemize}	
+	
+	\newpage
+	\item Erläutern Sie das Schichtenmodell eines Fenstersystems!
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.7]{img/window_layers.png}
+		\caption{Schichtenmodell eines Fenstersystems}
+	\end{figure}
+	\begin{itemize}
+		\item \textbf{Anwenderwerkzeuge}
+		\begin{itemize}
+			\item Typische Dialogbausteine müssen nicht für jede Applikation neu implementiert werden (Toolkits)
+			\item Schnittstelle zw Anwendung und Fenstersystemfunktionalität
+			\item typischerweise sind Bibliotheken die Anwenderwerkzeuge
+		\end{itemize}
+		\item \textbf{Window Management}
+		\begin{itemize}
+			\item Anzeige verschiedener Applikationen auf dem Bildschirm; Dialogmöglichkeiten auf Sitzungsebene
+			\item zuständig für Aussehen und Verhalten
+			\item sorgt für Positionierung und die Ausstattung der Fenster
+			\item liefert Standardtechniken, mit denen der Benutzer interagieren kann (zb Close Button)
+			\item Bildschirmaufteilung: Wo ist noch Platz? Welche Anwendung ist ikonifiziert?
+			\item Sitzungsverwaltung: Navigation zw. Applikationen; Menutechnik; Fensterrahmen,...
+			\item verschiedene Window Manager: siehe Frage vorher
+			\item 
+		\end{itemize}
+		\item \textbf{Ressourcen Verwaltung}
+		\begin{itemize}
+			\item Konkurrierender Zugriff auf Ressourcen; Synchronisation zw Applikationen
+			\item für $k$ Terminals (Monitor, Eingabegeräte) gibt es genau eine Instanz eines Fenstersystems; Dazu $n$ Anwendungen mit je $m$ Fenstern
+			\item Elementare Konzepte:
+			\item Objekt ''Fenster'': Zustand (Sichtbarkeit, (in)aktiv); Größe; Fußpunkt (Darstellung auf Screen)
+			\item Objekt ''Ereignis'': Eventtyp; Timestamp; Ort; zugehöriges Fenster
+			\item Objekt ''Font''
+			\item Objekt ''Graphikkontext''
+			\item Objekt ''Farbtabelle''
+		\end{itemize}
+		\item \textbf{Graphikbasissystem}
+		\begin{itemize}
+			\item Realisiert Ausgabefunktionalität für Fenstersysteme (2D-Rastergrafik); hardwarenah angelegt für hohe Ausgabegeschwindigkeit
+			\item Elementare Konzepte - 2D:
+			\item Zeichenfläche - Fenster (Drawable):\\
+			Ebenenformat - XY Koordinaten; Tiefe: Z-Format
+			\item Ausgabe-Objekte und grafische Kontexte:\\
+			Linien- oder Flächenprimitive, Textausgabe
+			\item Gedächtnis der Ausgabe:\\
+			Daten-gepufferte Ausgabe (Ausgabe in Hintergrundspeicher, anschließend Teile auf Bildschirm kopieren)\\
+			Bearbeiten und Vergessen: Rasterkonvertierung und dann Ausgabe
+			\item Events und Warteschlange:\\
+			Umwandlung gerätespez. Events und Speicherung in Queue (log. Bildkoords, Timestamp, Eventcode)
+		\end{itemize}
+		\item \textbf{Hardware}
+		\begin{itemize}
+			\item Rasterbildschirm mit Grafikprozessor, Maus, Tastatur, Multimediakomponenten
+		\end{itemize}
+	\end{itemize}
+	
+	\item Was sind Widgets und nennen sie typische Elemente in
+	Widgetbibliotheken?
+	\begin{itemize}
+		\item Widget = Dialogbaustein (heute auch kleine Anwendungen bei Android/Win 7)
+		\item in Motif: 
+		\item Primitive Widgets: Dialogbausteine mit Darstellung und Interaktion (Buttons,..)
+		\item Composite Widgets: Dialogbausteine zur Anordnung von Elementen (LayoutManager)
+		\item Shell Widgets: Dialogbausteine zum Behandeln neuer Fenster (Fenster, Dialogboxen)
+	\end{itemize}
+	
+	\item Welche Probleme treten bei der Anbindung von Funktionalität in objektorientierten Sprachen auf?
+	\begin{itemize}
+		\item Implementierung  oft in C (da OS-nah)
+		\item Fenstersystem vom Prinzip her aber OO
+		\item Probleme:
+		\item Widgets: Widget in C++ Wrapper einschließen\\
+		Problem: C++Instanz ex. bevor Widget dargestellt wird; Unklar wann Ressourcen in Unterklassen das Widget beeinflussen; Eventanbindung
+		\item Eventanbindung: Events durch Callbacks realisiert, CB benötigt Referenz auf Widget (siehe oben Wrapper vor Widget initialisiert)\\
+		Lösung: 1. CB als globale Funktion;\\
+		2. statische Memberfunktionen 
+	\end{itemize}
+	
+	\item Welche Vorteil bietet ''Markup and Code-Behind'' gegenüber herkömmlicher Benutzungsoberflächenprogrammierung?
+	\begin{itemize}
+		\item Markup+Code-Beding: Trennung der Oberfläche und Anwendungslogik
+		\item dadurch können Designer und Entwickler parallel arbeiten
+		\item einfacher Austausch der Komponenten
+	\end{itemize}
+	
+	\item Nennen Sie Bibliotheken zur Gestaltung graphischer
+	Benutzungsoberflächen und vergleichen sie diese!
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|p{13em}|p{13em}|p{13em}|}
+			\hline
+			\textbf{GTK+} & \textbf{QT} & \textbf{WPF}\\
+			\hline
+			Signals and Slots als Eventhandling & Signals and Slots als Eventhandling&\\
+			\hline
+			in C mit C++Wrapper für OO; vorrangig für X-Window& plattformübergreifend; C++ & für Windows ab Vista; setzt auf DirectX \\
+			\hline
+			besteht aus Teilbibliotheken & & Oberfläche 2D, Fenster Ikonen in 3D\\
+			\hline
+			&& Markup and Code Behind\\
+			\hline
+		\end{tabular}
+	\end{table}
+	weitere: Java -> AWT; Swing;SWT
+\end{enumerate}
 
 \subsection{Dialogtechniken}
 \begin{itemize}
@@ -720,7 +847,8 @@ Gibt keine Kontrollfragen -> Folien angucken
 	\item Wozu dient das Entwurfsmuster ...?\\
 	Singleton, Abstract Factory; Command; Adapter; Bridge; Proxy
 	
-	\item Vergleichen Sie das Entwurfsmuster Observer mit dem Model-View-Controller-Modell!	\begin{itemize}
+	\item Vergleichen Sie das Entwurfsmuster Observer mit dem Model-View-Controller-Modell!
+	\begin{itemize}
 		\item Observer = Pattern | MVC = Architektur
 		\item Observer kann im MVC benutzt um effizient die Änderung mitzuteilen
 	\end{itemize}
